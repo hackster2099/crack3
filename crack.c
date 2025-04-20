@@ -26,12 +26,19 @@ int main(int argc, char *argv[])
     //   Uncomment the appropriate statement.
     int size;
     //char (*hashes)[HASH_LEN] = loadFile(argv[1], &size);
-    //char **hashes = loadFile(argv[1], &size);
+    char **hashes = loadFileAA(argv[1], &size);
     
     // CHALLENGE1: Sort the hashes using qsort.
     
     // TODO
     // Open the password file for reading.
+    FILE *passFile = fopen(argv[2], "r");
+
+    if(!passFile){
+
+        printf("ERROR 3: could not open the password file");
+        exit(1);
+    }
 
     // TODO
     // For each password, hash it, then use the array search
