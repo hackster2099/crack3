@@ -28,6 +28,11 @@ int main(int argc, char *argv[])
     //char (*hashes)[HASH_LEN] = loadFile(argv[1], &size);
     char **hashes = loadFileAA(argv[1], &size);
     
+    int n = 40;
+    char **passArr = malloc(n * sizeof(char *));
+    char optArr[1000];
+    int i = 0;
+
     // CHALLENGE1: Sort the hashes using qsort.
     
     // TODO
@@ -41,6 +46,32 @@ int main(int argc, char *argv[])
     }
 
     // TODO
+    while(fgets(optArr, 1000, passFile)){
+
+        // trimming the new line
+        char *nl = strchr(optArr, '\n');
+        if(nl){
+
+            *nl = '\0';
+        }
+
+        // obtianing the length of the string to allocate memory for that individual cell
+        int strLen = strlen(optArr);
+
+        *(passArr+i) = malloc(strLen + 1);
+        strcpy(*(passArr+i), optArr);
+
+        i++;
+        n++;
+
+        if(i>=n){
+            
+            passArr = realloc(passArr, n *sizeof(char *));
+        }
+
+    }
+
+    
     // For each password, hash it, then use the array search
     // function from fileutil.h to find the hash.
     // If you find it, display the password and the hash.
