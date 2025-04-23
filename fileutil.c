@@ -76,14 +76,6 @@ char (*loadFile2D(char *filename, int *size))[COLS]
 	    exit(1);
 	}
 	
-	// TODO
-	// Allocate memory for an 2D array, using COLS as the width.
-	// Read the file line by line into a buffer.
-    //   Trim newline.
-	//   Expand array if necessary (realloc).
-	//   Copy each line from the buffer into the array (use strcpy).
-    // Close the file.
-	
 	// The size should be the number of entries in the array.
 	*size = 0;
 	
@@ -91,8 +83,7 @@ char (*loadFile2D(char *filename, int *size))[COLS]
 	return NULL;
 }
 
-// Search the array for the target string.
-// Return the found string or NULL if not found.
+
 char * substringSearchAA(char *target, char **lines, int size) {
 
 	char *foundArr;
@@ -118,12 +109,26 @@ char * substringSearch2D(char *target, char (*lines)[COLS], int size)
     return NULL;
 }
 
-int stringcmp(const void *a, const void *b, int *size){
+// this is my function for linear search
+// where it will take the hash value, 2D array, and number of elements in 2D 
+// array to search for entire hashes
+int hashCmp(char *hashVal, char **hashArr, int size){
 
-	char ** aa = (char **)a;
-	char ** bb = (char **)b;
+	int compareVal;
 
-	return strcmp(*aa, *bb);
+	for(int i=1; i<=size; i++){
+
+		compareVal  = strcmp(hashVal, hashArr[i]);
+
+		if(compareVal == 0){
+
+			break;
+			
+		}
+
+	}
+
+	return compareVal;
 
 }
 
